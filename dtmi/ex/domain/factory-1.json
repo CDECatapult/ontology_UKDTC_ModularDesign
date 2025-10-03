@@ -23,7 +23,7 @@
     },
     {
       "@type": "Relationship",
-      "name": "hasprojectcell1",
+      "name": "hasprojectcell2",
       "target": "dtmi:ex:domain:ProjectCell;2",
       "minMultiplicity": 0,
       "maxMultiplicity": 2
