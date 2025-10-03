@@ -29,7 +29,7 @@
     },
     {
       "@type": "Relationship",
-      "name": "hasDevice",
+      "name": "hasConveyor1",
       "target": "dtmi:ex:domain:StraightConveyor;1",
       "minMultiplicity": 0,
       "maxMultiplicity": 10
@@ -37,7 +37,7 @@
     
     {
       "@type": "Relationship",
-      "name": "hasDevice",
+      "name": "hasRobot1",
       "target": "dtmi:ex:domain:RobotArm;1",
       "minMultiplicity": 0,
       "maxMultiplicity": 4
