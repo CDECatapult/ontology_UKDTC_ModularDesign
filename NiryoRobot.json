@@ -1,0 +1,353 @@
+{
+  "@context": "dtmi:dtdl:context;2",
+  "dtmis": [
+    "dtmi:ex:robotics:RobotArm;1",
+    "dtmi:ex:robotics:Joint;1",
+    "dtmi:ex:robotics:Gripper;1"
+  ],
+  "models": [
+    {
+      "@id": "dtmi:ex:robotics:RobotArm;1",
+      "@type": "Interface",
+      "displayName": "Robot Arm",
+      "description": "A multi-joint robot arm with an end-effector (gripper).",
+      "contents": [
+        {
+          "@type": "Property",
+          "name": "manufacturer",
+          "schema": "string",
+          "writable": false
+        },
+        {
+          "@type": "Property",
+          "name": "model",
+          "schema": "string",
+          "writable": false
+        },
+        {
+          "@type": "Property",
+          "name": "serialNumber",
+          "schema": "string",
+          "writable": false
+        },
+        {
+          "@type": "Property",
+          "name": "degreesOfFreedom",
+          "schema": "integer",
+          "writable": false
+        },
+        {
+          "@type": "Property",
+          "name": "payloadCapacity",
+          "schema": "double",
+          "unit": "dtmi:dtdl:unit:kilogram;2",
+          "writable": false
+        },
+        {
+          "@type": "Property",
+          "name": "reach",
+          "description": "Max reach from base to wrist center.",
+          "schema": "double",
+          "unit": "dtmi:dtdl:unit:millimeter;2",
+          "writable": false
+        },
+        {
+          "@type": "Property",
+          "name": "supplyVoltageNominal",
+          "schema": "double",
+          "unit": "dtmi:dtdl:unit:volt;2",
+          "writable": false
+        },
+        {
+          "@type": "Property",
+          "name": "state",
+          "schema": {
+            "@type": "Enum",
+            "valueSchema": "string",
+            "enumValues": [
+              { "name": "Idle", "enumValue": "idle" },
+              { "name": "Running", "enumValue": "running" },
+              { "name": "Stopped", "enumValue": "stopped" },
+              { "name": "Fault", "enumValue": "fault" },
+              { "name": "EStop", "enumValue": "estop" }
+            ]
+          },
+          "writable": false
+        },
+        {
+          "@type": "Telemetry",
+          "name": "faultCode",
+          "schema": "string"
+        },
+        {
+          "@type": "Relationship",
+          "name": "hasJoint",
+          "target": "dtmi:ex:robotics:Joint;1",
+          "minMultiplicity": 1,
+          "maxMultiplicity": "many",
+          "properties": [
+            {
+              "@type": "Property",
+              "name": "index",
+              "schema": "integer",
+              "writable": false
+            },
+            {
+              "@type": "Property",
+              "name": "installedOn",
+              "schema": "dateTime",
+              "writable": false
+            }
+          ]
+        },
+        {
+          "@type": "Component",
+          "name": "gripper",
+          "schema": "dtmi:ex:robotics:Gripper;1"
+        },
+        {
+          "@type": "Command",
+          "name": "emergencyStop"
+        },
+        {
+          "@type": "Command",
+          "name": "clearFaults"
+        }
+      ]
+    },
+    {
+      "@id": "dtmi:ex:robotics:Joint;1",
+      "@type": "Interface",
+      "displayName": "Robot Joint",
+      "description": "A single joint in the robot arm.",
+      "contents": [
+        {
+          "@type": "Property",
+          "name": "jointIndex",
+          "schema": "integer",
+          "writable": false
+        },
+        {
+          "@type": "Property",
+          "name": "jointType",
+          "schema": {
+            "@type": "Enum",
+            "valueSchema": "string",
+            "enumValues": [
+              { "name": "Revolute", "enumValue": "revolute" },
+              { "name": "Prismatic", "enumValue": "prismatic" }
+            ]
+          },
+          "writable": false
+        },
+        {
+          "@type": "Property",
+          "name": "position",
+          "description": "Joint position: radians for revolute, millimeters for prismatic.",
+          "schema": "double",
+          "writable": true
+        },
+        {
+          "@type": "Property",
+          "name": "velocity",
+          "schema": "double",
+          "writable": true
+        },
+        {
+          "@type": "Property",
+          "name": "torqueOrForce",
+          "description": "Torque (N·m) for revolute, Force (N) for prismatic.",
+          "schema": "double",
+          "writable": false
+        },
+        {
+          "@type": "Property",
+          "name": "temperature",
+          "schema": "double",
+          "unit": "dtmi:dtdl:unit:degreeCelsius;2",
+          "writable": false
+        },
+        {
+          "@type": "Property",
+          "name": "voltage",
+          "schema": "double",
+          "unit": "dtmi:dtdl:unit:volt;2",
+          "writable": false
+        },
+        {
+          "@type": "Property",
+          "name": "current",
+          "schema": "double",
+          "unit": "dtmi:dtdl:unit:ampere;2",
+          "writable": false
+        },
+        {
+          "@type": "Property",
+          "name": "healthStatus",
+          "schema": {
+            "@type": "Enum",
+            "valueSchema": "string",
+            "enumValues": [
+              { "name": "OK", "enumValue": "ok" },
+              { "name": "Warning", "enumValue": "warning" },
+              { "name": "Critical", "enumValue": "critical" }
+            ]
+          },
+          "writable": false
+        },
+        {
+          "@type": "Property",
+          "name": "limits",
+          "schema": {
+            "@type": "Object",
+            "fields": [
+              { "name": "minPosition", "schema": "double" },
+              { "name": "maxPosition", "schema": "double" },
+              { "name": "maxVelocity", "schema": "double" },
+              { "name": "maxTorqueOrForce", "schema": "double" }
+            ]
+          },
+          "writable": false
+        },
+        {
+          "@type": "Property",
+          "name": "orientationEuler",
+          "description": "Optional: orientation of the joint link frame (XYZ extrinsic degrees).",
+          "schema": {
+            "@type": "Object",
+            "fields": [
+              { "name": "roll", "schema": "double" },
+              { "name": "pitch", "schema": "double" },
+              { "name": "yaw", "schema": "double" }
+            ]
+          },
+          "writable": false
+        },
+        {
+          "@type": "Property",
+          "name": "orientationQuaternion",
+          "description": "Optional: orientation as quaternion (x,y,z,w).",
+          "schema": {
+            "@type": "Object",
+            "fields": [
+              { "name": "x", "schema": "double" },
+              { "name": "y", "schema": "double" },
+              { "name": "z", "schema": "double" },
+              { "name": "w", "schema": "double" }
+            ]
+          },
+          "writable": false
+        },
+        {
+          "@type": "Telemetry",
+          "name": "vibrationRms",
+          "schema": "double",
+          "unit": "dtmi:dtdl:unit:meterPerSecondSquared;2"
+        },
+        {
+          "@type": "Relationship",
+          "name": "isPartOf",
+          "target": "dtmi:ex:robotics:RobotArm;1",
+          "minMultiplicity": 1,
+          "maxMultiplicity": 1
+        },
+        {
+          "@type": "Command",
+          "name": "setPosition",
+          "request": {
+            "name": "target",
+            "schema": "double"
+          }
+        },
+        {
+          "@type": "Command",
+          "name": "setVelocity",
+          "request": {
+            "name": "target",
+            "schema": "double"
+          }
+        }
+      ]
+    },
+    {
+      "@id": "dtmi:ex:robotics:Gripper;1",
+      "@type": "Interface",
+      "displayName": "Gripper",
+      "description": "End-effector for grasping.",
+      "contents": [
+        {
+          "@type": "Property",
+          "name": "gripperType",
+          "schema": {
+            "@type": "Enum",
+            "valueSchema": "string",
+            "enumValues": [
+              { "name": "Parallel", "enumValue": "parallel" },
+              { "name": "Vacuum", "enumValue": "vacuum" },
+              { "name": "Magnetic", "enumValue": "magnetic" }
+            ]
+          },
+          "writable": false
+        },
+        {
+          "@type": "Property",
+          "name": "width",
+          "description": "Jaw opening width (if applicable).",
+          "schema": "double",
+          "unit": "dtmi:dtdl:unit:millimeter;2",
+          "writable": true
+        },
+        {
+          "@type": "Property",
+          "name": "force",
+          "schema": "double",
+          "unit": "dtmi:dtdl:unit:newton;2",
+          "writable": true
+        },
+        {
+          "@type": "Property",
+          "name": "isOpen",
+          "schema": "boolean",
+          "writable": false
+        },
+        {
+          "@type": "Property",
+          "name": "temperature",
+          "schema": "double",
+          "unit": "dtmi:dtdl:unit:degreeCelsius;2",
+          "writable": false
+        },
+        {
+          "@type": "Property",
+          "name": "voltage",
+          "schema": "double",
+          "unit": "dtmi:dtdl:unit:volt;2",
+          "writable": false
+        },
+        {
+          "@type": "Property",
+          "name": "current",
+          "schema": "double",
+          "unit": "dtmi:dtdl:unit:ampere;2",
+          "writable": false
+        },
+        {
+          "@type": "Command",
+          "name": "open"
+        },
+        {
+          "@type": "Command",
+          "name": "close"
+        },
+        {
+          "@type": "Command",
+          "name": "setWidth",
+          "request": {
+            "name": "targetWidth",
+            "schema": "double"
+          }
+        }
+      ]
+    }
+  ]
+}
