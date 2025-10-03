@@ -34,7 +34,7 @@
         "name": "hasJoint",
         "target": "dtmi:ex:robotics:Joint;1",
         "minMultiplicity": 0,
-        "maxMultiplicity": 2147483647
+        "maxMultiplicity": 10
       },
       { "@type": "Component", "name": "gripper", "schema": "dtmi:ex:robotics:Gripper;1" },
       { "@type": "Command", "name": "emergencyStop" },
