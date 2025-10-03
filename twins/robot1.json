@@ -1,0 +1,6 @@
+{
+  "$dtId": "robot1",
+  "$metadata": { "$model": "dtmi:ex:robotics:RobotArm;1" },
+  "manufacturer": "Kuka",
+  "model": "KR6"
+}

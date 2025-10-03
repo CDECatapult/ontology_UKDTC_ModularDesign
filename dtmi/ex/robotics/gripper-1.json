@@ -1,0 +1,11 @@
+{
+  "@id": "dtmi:ex:robotics:Gripper;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "displayName": "Gripper",
+  "contents": [
+    { "@type": "Property", "name": "isOpen", "schema": "boolean" },
+    { "@type": "Command", "name": "open" },
+    { "@type": "Command", "name": "close" }
+  ]
+}

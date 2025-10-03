@@ -1,0 +1,21 @@
+{
+  "@id": "dtmi:ex:robotics:RobotArm;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "displayName": "Robot Arm",
+  "contents": [
+    {
+      "@type": "Relationship",
+      "name": "hasJoint",
+      "target": "dtmi:ex:robotics:Joint;1",
+      "minMultiplicity": 0,
+      "maxMultiplicity": 6
+    },
+    {
+      "@type": "Component",
+      "name": "gripper",
+      "schema": "dtmi:ex:robotics:Gripper;1"
+    },
+    { "@type": "Command", "name": "emergencyStop" }
+  ]
+}
