@@ -23,11 +23,6 @@
       }
     },
     {
-      "@type": "Telemetry",
-      "name": "telemetryName",
-      "schema": "double"
-    },
-    {
       "@type": "Relationship",
       "name": "hasConveyor1",
       "target": "dtmi:ex:domain:StraightConveyor;1",

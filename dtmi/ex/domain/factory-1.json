@@ -10,11 +10,6 @@
       "schema": "string"
     },
     {
-      "@type": "Telemetry",
-      "name": "telemetryName",
-      "schema": "double"
-    },
-    {
       "@type": "Relationship",
       "name": "hasprojectcell",
       "target": "dtmi:ex:domain:ProjectCell;1",
