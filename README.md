@@ -10,7 +10,10 @@ Each model requires:
 
 ```bash
 dtmi:ex:domain:RobotArm;1  
-→ /dtmi/ex/domain/robotarm-1.json
+
+# almost like folder but then if you place them in seperate folder they cant communicate
+
+/dtmi/ex/domain/robotarm-1.json
 
 ```
 
