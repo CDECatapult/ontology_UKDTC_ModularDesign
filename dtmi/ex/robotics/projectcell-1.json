@@ -9,19 +9,19 @@
       "name": "Throughput",
       "schema": "string"
     },
-       {
-  "@type": "Property",
-  "name": "ThroughputQuality",
-  "schema": {
-    "@type": "Enum",
-    "valueSchema": "string",
-    "enumValues": [
-      { "name": "Bad", "enumValue": "Below Target" },
-      { "name": "Good", "enumValue": "Hitting Target" },
-      { "name": "Excellent", "enumValue": "Exceeding expectation" }
-    ]
-  }
-},
+    {
+      "@type": "Property",
+      "name": "ThroughputQuality",
+      "schema": {
+        "@type": "Enum",
+        "valueSchema": "string",
+        "enumValues": [
+          { "name": "Bad", "enumValue": "Below Target" },
+          { "name": "Good", "enumValue": "Hitting Target" },
+          { "name": "Excellent", "enumValue": "Exceeding expectation" }
+        ]
+      }
+    },
     {
       "@type": "Telemetry",
       "name": "telemetryName",
@@ -29,14 +29,14 @@
     },
     {
       "@type": "Relationship",
-      "name": "Feeds Robotic Arm",
+      "name": "feedsConveyor",
       "target": "dtmi:ex:domain:StraightConveyor;1",
       "minMultiplicity": 0,
       "maxMultiplicity": 1
     },
     {
       "@type": "Relationship",
-      "name": "Pick and place from Conveyor",
+      "name": "usesRobotArm",
       "target": "dtmi:ex:domain:RobotArm;1",
       "minMultiplicity": 0,
       "maxMultiplicity": 1
