@@ -12,11 +12,15 @@
       "maxMultiplicity": 6
     },
     {
-      "@type": "Component",
-      "name": "gripper",
-      "schema": "dtmi:ex:robotics:Gripper;1"
+      "@type": "Relationship",
+      "name": "hasGripper",
+      "target": "dtmi:ex:robotics:Gripper;1",
+      "minMultiplicity": 0,
+      "maxMultiplicity": 2
     },
-    { "@type": "Command", 
-      "name": "emergencyStop" }
+    {
+      "@type": "Command",
+      "name": "emergencyStop"
+    }
   ]
 }

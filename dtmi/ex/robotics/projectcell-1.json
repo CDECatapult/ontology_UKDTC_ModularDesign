@@ -29,21 +29,32 @@
     },
     {
       "@type": "Relationship",
-      "name": "feedsConveyor",
+      "name": "hasDevice",
       "target": "dtmi:ex:domain:StraightConveyor;1",
       "minMultiplicity": 0,
-      "maxMultiplicity": 1
+      "maxMultiplicity": 10
     },
+    
     {
       "@type": "Relationship",
-      "name": "usesRobotArm",
+      "name": "hasDevice",
       "target": "dtmi:ex:domain:RobotArm;1",
       "minMultiplicity": 0,
-      "maxMultiplicity": 1
+      "maxMultiplicity": 4
     },
-    {
-      "@type": "Command",
-      "name": "TurnOn"
+     {
+      "@type": "Property",
+      "name": "Status",
+      "schema": {
+        "@type": "Enum",
+        "valueSchema": "string",
+        "enumValues": [
+          { "name": "ON", "enumValue": "ON" },
+          { "name": "OFF", "enumValue": "OFF" },
+          { "name": "maintenance", "enumValue": "Maint" }
+        ]
+      }
     }
+   
   ]
 }
