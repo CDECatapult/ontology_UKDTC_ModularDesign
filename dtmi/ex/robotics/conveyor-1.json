@@ -35,7 +35,7 @@
 {
       "@type": "Relationship",
       "name": "feedsRoboticarm",
-      "target": "dtmi:ex:domain:RobotArm;1",
+      "target": "dtmi:ex:robotics:RobotArm;1",
       "minMultiplicity": 0,
       "maxMultiplicity": 1
     },

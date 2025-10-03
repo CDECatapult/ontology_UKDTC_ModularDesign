@@ -1,8 +1,8 @@
 {
-  "@id": "dtmi:ex:domain:PickNPlace;1",
+  "@id": "dtmi:ex:domain:ProjectCell;1",
   "@type": "Interface",
   "@context": "dtmi:dtdl:context;2",
-  "displayName": "PickNPlace",
+  "displayName": "ProjectCell",
   "contents": [
     {
       "@type": "Property",
