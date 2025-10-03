@@ -1,0 +1,59 @@
+{
+  "@id": "dtmi:ex:domain:StraightConveyor;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "displayName": "StraightConveyor",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "Location",
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "ProjectName",
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "Location",
+      "schema": "string"
+    },
+    {
+  "@type": "Property",
+  "name": "operatingMode",
+  "schema": {
+    "@type": "Enum",
+    "valueSchema": "string",
+    "enumValues": [
+      { "name": "Idle", "enumValue": "idle" },
+      { "name": "Running", "enumValue": "running" },
+      { "name": "Fault", "enumValue": "fault" }
+    ]
+  }
+},
+{
+      "@type": "Property",
+      "name": "ConveyorType",
+      "schema": "string"
+    },
+
+    {
+      "@type": "Telemetry",
+      "name": "Speed",
+      "schema": "double"
+    },
+    {
+      "@type": "Command",
+      "name": "emergencyStop"
+    },
+     {
+      "@type": "Command",
+      "name": "Start"
+    },
+     {
+      "@type": "Command",
+      "name": "Stop"
+    }
+  ]
+}

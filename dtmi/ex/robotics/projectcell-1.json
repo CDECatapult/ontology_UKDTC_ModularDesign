@@ -1,0 +1,49 @@
+{
+  "@id": "dtmi:ex:domain:PickNPlace;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "displayName": "PickNPlace",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "Throughput",
+      "schema": "string"
+    },
+       {
+  "@type": "Property",
+  "name": "ThroughputQuality",
+  "schema": {
+    "@type": "Enum",
+    "valueSchema": "string",
+    "enumValues": [
+      { "name": "Bad", "enumValue": "Below Target" },
+      { "name": "Good", "enumValue": "Hitting Target" },
+      { "name": "Excellent", "enumValue": "Exceeding expectation" }
+    ]
+  }
+},
+    {
+      "@type": "Telemetry",
+      "name": "telemetryName",
+      "schema": "double"
+    },
+    {
+      "@type": "Relationship",
+      "name": "relationshipName",
+      "target": "dtmi:ex:domain:StraightConveyor;1",
+      "minMultiplicity": 0,
+      "maxMultiplicity": 1
+    },
+    {
+      "@type": "Relationship",
+      "name": "relationshipName",
+      "target": "dtmi:ex:domain:RobotArm;1",
+      "minMultiplicity": 0,
+      "maxMultiplicity": 1
+    },
+    {
+      "@type": "Command",
+      "name": "TurnOn"
+    }
+  ]
+}

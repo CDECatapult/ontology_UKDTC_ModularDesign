@@ -16,6 +16,7 @@
       "name": "gripper",
       "schema": "dtmi:ex:robotics:Gripper;1"
     },
-    { "@type": "Command", "name": "emergencyStop" }
+    { "@type": "Command", 
+      "name": "emergencyStop" }
   ]
 }
