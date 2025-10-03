@@ -16,10 +16,17 @@
     },
     {
       "@type": "Relationship",
-      "name": "relationshipName",
-      "target": "dtmi:ex:domain:TargetModel;1",
+      "name": "hasprojectcell1",
+      "target": "dtmi:ex:domain:ProjectCell;1",
       "minMultiplicity": 0,
-      "maxMultiplicity": 1
+      "maxMultiplicity": 2
+    },
+    {
+      "@type": "Relationship",
+      "name": "hasprojectcell1",
+      "target": "dtmi:ex:domain:ProjectCell;2",
+      "minMultiplicity": 0,
+      "maxMultiplicity": 2
     },
     {
       "@type": "Command",
