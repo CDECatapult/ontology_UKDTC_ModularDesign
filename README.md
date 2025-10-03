@@ -1,5 +1,11 @@
 # DTDL Modeling Tips
 
+## Example usage and output
+
+![Ontology for a project cell](images/Ontology_Test.png)
+
+- Run your parser from the src folder as it contains all the Json files. 
+- add devices as you 
 ## 1. General Rules
 
 Each model requires:

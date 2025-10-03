@@ -9,7 +9,7 @@
       "name": "hasJoint",
       "target": "dtmi:ex:robotics:Joint;1",
       "minMultiplicity": 0,
-      "maxMultiplicity": 6
+      "maxMultiplicity": 7
     },
     {
       "@type": "Relationship",

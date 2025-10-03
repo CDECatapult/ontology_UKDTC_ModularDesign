@@ -1,0 +1,29 @@
+{
+  "@id": "dtmi:ex:domain:Factory;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "displayName": "Factory",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "Location",
+      "schema": "string"
+    },
+    {
+      "@type": "Telemetry",
+      "name": "telemetryName",
+      "schema": "double"
+    },
+    {
+      "@type": "Relationship",
+      "name": "relationshipName",
+      "target": "dtmi:ex:domain:TargetModel;1",
+      "minMultiplicity": 0,
+      "maxMultiplicity": 1
+    },
+    {
+      "@type": "Command",
+      "name": "commandName"
+    }
+  ]
+}
