@@ -29,14 +29,14 @@
     },
     {
       "@type": "Relationship",
-      "name": "relationshipName",
+      "name": "Feeds Robotic Arm",
       "target": "dtmi:ex:domain:StraightConveyor;1",
       "minMultiplicity": 0,
       "maxMultiplicity": 1
     },
     {
       "@type": "Relationship",
-      "name": "relationshipName",
+      "name": "Pick and place from Conveyor",
       "target": "dtmi:ex:domain:RobotArm;1",
       "minMultiplicity": 0,
       "maxMultiplicity": 1

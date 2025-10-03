@@ -16,7 +16,7 @@
     },
     {
       "@type": "Property",
-      "name": "Location",
+      "name": "Manufacturer",
       "schema": "string"
     },
     {
