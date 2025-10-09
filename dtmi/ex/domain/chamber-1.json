@@ -36,5 +36,13 @@
       "minMultiplicity": 0,
       "maxMultiplicity": 10
     }
+    ,
+    {
+      "@type": "Relationship",
+      "name": "contains",
+      "target": "dtmi:ex:peripherals:Asset;1",
+      "minMultiplicity": 0,
+      "maxMultiplicity": 10
+    }
   ]
 }

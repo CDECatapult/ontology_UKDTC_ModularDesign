@@ -1,0 +1,23 @@
+{
+  "@id": "dtmi:ex:domain:Asset;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "displayName": "asset",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "active",
+      "schema": "boolean"
+    },
+    {
+      "@type": "Property",
+      "name": "code",
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "ERPID",
+      "schema": "string"
+    }
+  ]
+}
