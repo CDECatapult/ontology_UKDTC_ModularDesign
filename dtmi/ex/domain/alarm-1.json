@@ -17,7 +17,7 @@
     {
       "@type": "Property",
       "name": "thresholds",
-      "schema": "object"
+      "schema": "string"
     }
   ]
 }
