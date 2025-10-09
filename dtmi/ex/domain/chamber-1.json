@@ -1,0 +1,40 @@
+{
+  "@id": "dtmi:ex:domain:Chamber;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "displayName": "chamber",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "temperatureC",
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "humidityPct",
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "co2Pct",
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "vibrationRms",
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "vibrationThreshold",
+      "schema": "double"
+    },
+    {
+      "@type": "Relationship",
+      "name": "monitoredBy",
+      "target": "dtmi:ex:peripherals:Sensor;1",
+      "minMultiplicity": 0,
+      "maxMultiplicity": 10
+    }
+  ]
+}

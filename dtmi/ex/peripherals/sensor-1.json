@@ -1,0 +1,23 @@
+{
+  "@id": "dtmi:ex:domain:Sensor;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "displayName": "sensor",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "deviceId",
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "model",
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "lastCalibration",
+      "schema": "string"
+    }
+  ]
+}

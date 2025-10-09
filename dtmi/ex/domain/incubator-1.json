@@ -1,0 +1,143 @@
+{
+  "@id": "dtmi:ex:domain:Incubator;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "displayName": "incubator",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "manufacturer",
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "model",
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "serialNumber",
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "vibrationRms",
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "controlMode",
+      "schema": {
+        "@type": "Enum",
+        "valueSchema": "string",
+        "enumValues": [
+          {
+            "name": "TemperatureOnly",
+            "enumValue": "TemperatureOnly"
+          },
+          {
+            "name": "TempHumidity",
+            "enumValue": "TempHumidity"
+          },
+          {
+            "name": "TempCO2",
+            "enumValue": "TempCO2"
+          },
+          {
+            "name": "Full",
+            "enumValue": "Full"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "Property",
+      "name": "cyclePhase",
+      "schema": {
+        "@type": "Enum",
+        "valueSchema": "string",
+        "enumValues": [
+          {
+            "name": "Idle",
+            "enumValue": "Idle"
+          },
+          {
+            "name": "Preheat",
+            "enumValue": "Preheat"
+          },
+          {
+            "name": "Stable",
+            "enumValue": "Stable"
+          },
+          {
+            "name": "Running",
+            "enumValue": "Running"
+          },
+          {
+            "name": "Cooling",
+            "enumValue": "Cooling"
+          },
+          {
+            "name": "Fault",
+            "enumValue": "Fault"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "Property",
+      "name": "powerState",
+      "schema": {
+        "@type": "Enum",
+        "valueSchema": "string",
+        "enumValues": [
+          {
+            "name": "Off",
+            "enumValue": "Off"
+          },
+          {
+            "name": "On",
+            "enumValue": "On"
+          },
+          {
+            "name": "Standby",
+            "enumValue": "Standby"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "Relationship",
+      "name": "contains",
+      "target": "dtmi:ex:domain:Chamber;1",
+      "minMultiplicity": 0,
+      "maxMultiplicity": 1
+    },
+    {
+      "@type": "Relationship",
+      "name": "controlledBy",
+      "target": "dtmi:ex:domain:Controller;1",
+      "minMultiplicity": 0,
+      "maxMultiplicity": 1
+    },
+    {
+      "@type": "Relationship",
+      "name": "raises",
+      "target": "dtmi:ex:domain:Alarm;1",
+      "minMultiplicity": 0,
+      "maxMultiplicity": 4
+    },
+    {
+      "@type": "Command",
+      "name": "startCycle"
+    },
+    {
+      "@type": "Command",
+      "name": "stopCycle"
+    },
+    {
+      "@type": "Command",
+      "name": "acknowledgeAlarm"
+    }
+  ]
+}

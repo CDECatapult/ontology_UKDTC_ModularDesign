@@ -1,0 +1,27 @@
+{
+  "@id": "dtmi:ex:domain:Controller;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "displayName": "controller",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "heaterPowerPct",
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "humidifierDutyPct",
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "co2ValveDutyPct",
+      "schema": "double"
+    },
+    {
+      "@type": "Command",
+      "name": "calibrateSensor"
+    }
+  ]
+}
