@@ -16,7 +16,7 @@
     },
     {
       "@type": "Property",
-      "name": "ERPID",
+      "name": "erpId",
       "schema": "string"
     }
   ]

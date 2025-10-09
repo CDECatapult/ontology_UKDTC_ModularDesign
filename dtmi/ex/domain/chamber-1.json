@@ -40,7 +40,7 @@
     {
       "@type": "Relationship",
       "name": "contains",
-      "target": "dtmi:ex:peripherals:Asset;1",
+      "target": "dtmi:ex:domain:Asset;1",
       "minMultiplicity": 0,
       "maxMultiplicity": 10
     }
