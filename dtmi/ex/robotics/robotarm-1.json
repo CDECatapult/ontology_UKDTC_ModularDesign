@@ -19,6 +19,13 @@
       "maxMultiplicity": 2
     },
     {
+      "@type": "Relationship",
+      "name": "PicknPlaceonDrone",
+      "target": "dtmi:ex:domain:Incubator;1",
+      "minMultiplicity": 0,
+      "maxMultiplicity": 2
+    },
+    {
       "@type": "Command",
       "name": "emergencyStop"
     }
