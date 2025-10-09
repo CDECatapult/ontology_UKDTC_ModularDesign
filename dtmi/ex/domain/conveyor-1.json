@@ -41,8 +41,8 @@
     },
     {
       "@type": "Relationship",
-      "name": "carriesIncubatorFromSource",
-      "target": "dtmi:ex:domain:Incubator;1",
+      "name": "carriesContainerFromSource",
+      "target": "dtmi:ex:domain:StorageContainer;1",
       "minMultiplicity": 0,
       "maxMultiplicity": 2
     },
