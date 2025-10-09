@@ -6,6 +6,13 @@
   "contents": [
     { "@type": "Property", "name": "jointIndex", "schema": "integer" },
     { "@type": "Property", "name": "position", "schema": "double" },
-    { "@type": "Telemetry", "name": "temperature", "schema": "double" }
+    { "@type": "Telemetry", "name": "temperature", "schema": "double" },
+    {
+      "@type": "Relationship",
+      "name": "hasMotor",
+      "target": "dtmi:ex:peripherals:Motor;1",
+      "minMultiplicity": 0,
+      "maxMultiplicity": 2
+    }
   ]
 }
