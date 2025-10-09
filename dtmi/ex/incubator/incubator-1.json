@@ -57,7 +57,7 @@
         "description": "Target profile for an incubation cycle."
       },
       {
-        "@type": "Telemetry",
+        "@type": "Property",
         "name": "cyclePhase",
         "schema": {
           "@type": "Enum",
@@ -74,7 +74,7 @@
         "description": "Current incubation phase."
       },
       {
-        "@type": "Telemetry",
+        "@type": "Property",
         "name": "powerState",
         "schema": {
           "@type": "Enum",
@@ -88,7 +88,7 @@
         "description": "Power mode of the incubator."
       },
       {
-        "@type": "Telemetry",
+        "@type": "Property",
         "name": "vibrationRms",
         "schema": "double",
         "unit": "metrePerSecondSquared",
@@ -153,28 +153,28 @@
     "displayName": "Chamber",
     "contents": [
       {
-        "@type": "Telemetry",
+        "@type": "Property",
         "name": "temperatureC",
         "schema": "double",
         "unit": "degreeCelsius",
         "description": "Measured chamber temperature."
       },
       {
-        "@type": "Telemetry",
+        "@type": "Property",
         "name": "humidityPct",
         "schema": "double",
         "unit": "percent",
         "description": "Measured chamber humidity."
       },
       {
-        "@type": "Telemetry",
+        "@type": "Property",
         "name": "co2Pct",
         "schema": "double",
         "unit": "percent",
         "description": "Measured chamber CO2 concentration."
       },
       {
-        "@type": "Telemetry",
+        "@type": "Property",
         "name": "vibrationRms",
         "schema": "double",
         "unit": "metrePerSecondSquared",
@@ -235,21 +235,21 @@
         "writable": true
       },
       {
-        "@type": "Telemetry",
+        "@type": "Property",
         "name": "heaterPowerPct",
         "schema": "double",
         "unit": "percent",
         "description": "Heater power percentage."
       },
       {
-        "@type": "Telemetry",
+        "@type": "Property",
         "name": "humidifierDutyPct",
         "schema": "double",
         "unit": "percent",
         "description": "Humidifier duty cycle percentage."
       },
       {
-        "@type": "Telemetry",
+        "@type": "Property",
         "name": "co2ValveDutyPct",
         "schema": "double",
         "unit": "percent",
@@ -281,12 +281,12 @@
     "displayName": "Alarm",
     "contents": [
       {
-        "@type": "Telemetry",
+        "@type": "Property",
         "name": "active",
         "schema": "boolean"
       },
       {
-        "@type": "Telemetry",
+        "@type": "Property",
         "name": "code",
         "schema": "string",
         "description": "Active alarm code, if any."
@@ -344,7 +344,7 @@
     "displayName": "Temperature Sensor",
     "contents": [
       {
-        "@type": "Telemetry",
+        "@type": "Property",
         "name": "temperatureC",
         "schema": "double",
         "unit": "degreeCelsius"
@@ -359,7 +359,7 @@
     "displayName": "Humidity Sensor",
     "contents": [
       {
-        "@type": "Telemetry",
+        "@type": "Property",
         "name": "humidityPct",
         "schema": "double",
         "unit": "percent"
@@ -374,7 +374,7 @@
     "displayName": "CO2 Sensor",
     "contents": [
       {
-        "@type": "Telemetry",
+        "@type": "Property",
         "name": "co2Pct",
         "schema": "double",
         "unit": "percent"
@@ -389,14 +389,14 @@
     "displayName": "Vibration Sensor",
     "contents": [
       {
-        "@type": "Telemetry",
+        "@type": "Property",
         "name": "vibrationRms",
         "schema": "double",
         "unit": "metrePerSecondSquared",
         "description": "RMS vibration amplitude."
       },
       {
-        "@type": "Telemetry",
+        "@type": "Property",
         "name": "peakVibration",
         "schema": "double",
         "unit": "metrePerSecondSquared",
