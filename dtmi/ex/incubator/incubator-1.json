@@ -4,14 +4,13 @@
     "@type": "Interface",
     "@context": "dtmi:dtdl:context;2",
     "displayName": "Incubator",
-    "description": "Bench-top biological incubator with heated chamber and optional CO2/humidity control.",
+    "description": "Bench-top biological incubator with heated chamber, optional CO2/humidity/vibration monitoring.",
     "contents": [
       {
         "@type": "Property",
         "name": "manufacturer",
         "schema": "string",
-        "writable": false,
-        "description": "Device OEM name."
+        "writable": false
       },
       {
         "@type": "Property",
@@ -32,10 +31,10 @@
           "@type": "Enum",
           "valueSchema": "string",
           "enumValues": [
-            { "name": "TemperatureOnly", "value": "temperature" },
-            { "name": "TempHumidity", "value": "temp_humidity" },
-            { "name": "TempCO2", "value": "temp_co2" },
-            { "name": "Full", "value": "full" }
+            { "name": "TemperatureOnly", "enumValue": "temperature" },
+            { "name": "TempHumidity", "enumValue": "temp_humidity" },
+            { "name": "TempCO2", "enumValue": "temp_co2" },
+            { "name": "Full", "enumValue": "full" }
           ]
         },
         "writable": true,
@@ -55,7 +54,7 @@
           ]
         },
         "writable": true,
-        "description": "Simple target profile for an incubation cycle."
+        "description": "Target profile for an incubation cycle."
       },
       {
         "@type": "Telemetry",
@@ -64,15 +63,15 @@
           "@type": "Enum",
           "valueSchema": "string",
           "enumValues": [
-            { "name": "Idle", "value": "idle" },
-            { "name": "Preheat", "value": "preheat" },
-            { "name": "Stable", "value": "stable" },
-            { "name": "Running", "value": "running" },
-            { "name": "Cooling", "value": "cooling" },
-            { "name": "Fault", "value": "fault" }
+            { "name": "Idle", "enumValue": "idle" },
+            { "name": "Preheat", "enumValue": "preheat" },
+            { "name": "Stable", "enumValue": "stable" },
+            { "name": "Running", "enumValue": "running" },
+            { "name": "Cooling", "enumValue": "cooling" },
+            { "name": "Fault", "enumValue": "fault" }
           ]
         },
-        "description": "Current incuation phase."
+        "description": "Current incubation phase."
       },
       {
         "@type": "Telemetry",
@@ -81,30 +80,33 @@
           "@type": "Enum",
           "valueSchema": "string",
           "enumValues": [
-            { "name": "Off", "value": "off" },
-            { "name": "On", "value": "on" },
-            { "name": "Standby", "value": "standby" }
+            { "name": "Off", "enumValue": "off" },
+            { "name": "On", "enumValue": "on" },
+            { "name": "Standby", "enumValue": "standby" }
           ]
-        }
+        },
+        "description": "Power mode of the incubator."
+      },
+      {
+        "@type": "Telemetry",
+        "name": "vibrationRms",
+        "schema": "double",
+        "unit": "metrePerSecondSquared",
+        "description": "Overall RMS vibration of the incubator chassis."
       },
       {
         "@type": "Relationship",
         "name": "contains",
-        "displayName": "Contains Chamber",
-        "target": "dtmi:example:lab:Chamber;1",
-        "maxMultiplicity": 1
+        "target": "dtmi:example:lab:Chamber;1"
       },
       {
         "@type": "Relationship",
         "name": "controlledBy",
-        "displayName": "Controlled By",
-        "target": "dtmi:example:lab:Controller;1",
-        "maxMultiplicity": 1
+        "target": "dtmi:example:lab:Controller;1"
       },
       {
         "@type": "Relationship",
         "name": "raises",
-        "displayName": "Raises Alarm",
         "target": "dtmi:example:lab:Alarm;1"
       },
       {
@@ -112,8 +114,7 @@
         "name": "startCycle",
         "request": {
           "name": "profile",
-          "schema": "string",
-          "description": "Optional profile name; if omitted, uses current cycleProfile."
+          "schema": "string"
         }
       },
       {
@@ -152,51 +153,45 @@
     "displayName": "Chamber",
     "contents": [
       {
-        "@type": "Property",
-        "name": "doorOpen",
-        "schema": "boolean",
-        "writable": false
-      },
-      {
-        "@type": "Property",
-        "name": "targets",
-        "schema": {
-          "@type": "Object",
-          "fields": [
-            { "name": "temperatureC", "schema": "double" },
-            { "name": "humidityPct", "schema": "double" },
-            { "name": "co2Pct", "schema": "double" }
-          ]
-        },
-        "writable": true
-      },
-      {
         "@type": "Telemetry",
         "name": "temperatureC",
         "schema": "double",
-        "unit": "degreeCelsius"
+        "unit": "degreeCelsius",
+        "description": "Measured chamber temperature."
       },
       {
         "@type": "Telemetry",
         "name": "humidityPct",
         "schema": "double",
-        "unit": "percent"
+        "unit": "percent",
+        "description": "Measured chamber humidity."
       },
       {
         "@type": "Telemetry",
         "name": "co2Pct",
         "schema": "double",
-        "unit": "percent"
+        "unit": "percent",
+        "description": "Measured chamber CO2 concentration."
+      },
+      {
+        "@type": "Telemetry",
+        "name": "vibrationRms",
+        "schema": "double",
+        "unit": "metrePerSecondSquared",
+        "description": "RMS vibration within the chamber."
+      },
+      {
+        "@type": "Property",
+        "name": "vibrationThreshold",
+        "schema": "double",
+        "unit": "metrePerSecondSquared",
+        "writable": true,
+        "description": "Alarm threshold for chamber vibration."
       },
       {
         "@type": "Relationship",
         "name": "monitoredBy",
         "target": "dtmi:example:lab:Sensor;1"
-      },
-      {
-        "@type": "Relationship",
-        "name": "raises",
-        "target": "dtmi:example:lab:Alarm;1"
       },
       {
         "@type": "Component",
@@ -212,6 +207,11 @@
         "@type": "Component",
         "name": "co2Sensor",
         "schema": "dtmi:example:lab:CO2Sensor;1"
+      },
+      {
+        "@type": "Component",
+        "name": "vibrationSensor",
+        "schema": "dtmi:example:lab:VibrationSensor;1"
       }
     ]
   },
@@ -235,48 +235,25 @@
         "writable": true
       },
       {
-        "@type": "Property",
-        "name": "pidHumidity",
-        "schema": {
-          "@type": "Object",
-          "fields": [
-            { "name": "kp", "schema": "double" },
-            { "name": "ki", "schema": "double" },
-            { "name": "kd", "schema": "double" }
-          ]
-        },
-        "writable": true
-      },
-      {
-        "@type": "Property",
-        "name": "pidCO2",
-        "schema": {
-          "@type": "Object",
-          "fields": [
-            { "name": "kp", "schema": "double" },
-            { "name": "ki", "schema": "double" },
-            { "name": "kd", "schema": "double" }
-          ]
-        },
-        "writable": true
-      },
-      {
         "@type": "Telemetry",
         "name": "heaterPowerPct",
         "schema": "double",
-        "unit": "percent"
+        "unit": "percent",
+        "description": "Heater power percentage."
       },
       {
         "@type": "Telemetry",
         "name": "humidifierDutyPct",
         "schema": "double",
-        "unit": "percent"
+        "unit": "percent",
+        "description": "Humidifier duty cycle percentage."
       },
       {
         "@type": "Telemetry",
         "name": "co2ValveDutyPct",
         "schema": "double",
-        "unit": "percent"
+        "unit": "percent",
+        "description": "CO2 valve duty cycle percentage."
       },
       {
         "@type": "Command",
@@ -287,9 +264,10 @@
             "@type": "Enum",
             "valueSchema": "string",
             "enumValues": [
-              { "name": "Temperature", "value": "temperature" },
-              { "name": "Humidity", "value": "humidity" },
-              { "name": "CO2", "value": "co2" }
+              { "name": "Temperature", "enumValue": "temperature" },
+              { "name": "Humidity", "enumValue": "humidity" },
+              { "name": "CO2", "enumValue": "co2" },
+              { "name": "Vibration", "enumValue": "vibration" }
             ]
           }
         }
@@ -311,7 +289,7 @@
         "@type": "Telemetry",
         "name": "code",
         "schema": "string",
-        "description": "Current alarm code if active."
+        "description": "Active alarm code, if any."
       },
       {
         "@type": "Property",
@@ -324,7 +302,8 @@
             { "name": "humidityHighPct", "schema": "double" },
             { "name": "humidityLowPct", "schema": "double" },
             { "name": "co2HighPct", "schema": "double" },
-            { "name": "co2LowPct", "schema": "double" }
+            { "name": "co2LowPct", "schema": "double" },
+            { "name": "vibrationHigh", "schema": "double" }
           ]
         },
         "writable": true
@@ -337,39 +316,92 @@
     "@context": "dtmi:dtdl:context;2",
     "displayName": "Abstract Sensor",
     "contents": [
-      { "@type": "Property", "name": "deviceId", "schema": "string", "writable": false },
-      { "@type": "Property", "name": "model", "schema": "string", "writable": false },
-      { "@type": "Property", "name": "lastCalibration", "schema": "dateTime", "writable": false }
+      {
+        "@type": "Property",
+        "name": "deviceId",
+        "schema": "string",
+        "writable": false
+      },
+      {
+        "@type": "Property",
+        "name": "model",
+        "schema": "string",
+        "writable": false
+      },
+      {
+        "@type": "Property",
+        "name": "lastCalibration",
+        "schema": "dateTime",
+        "writable": false
+      }
     ]
   },
   {
     "@id": "dtmi:example:lab:TempSensor;1",
     "@type": "Interface",
     "@context": "dtmi:dtdl:context;2",
-    "extends": [ "dtmi:example:lab:Sensor;1" ],
+    "extends": ["dtmi:example:lab:Sensor;1"],
     "displayName": "Temperature Sensor",
     "contents": [
-      { "@type": "Telemetry", "name": "temperatureC", "schema": "double", "unit": "degreeCelsius" }
+      {
+        "@type": "Telemetry",
+        "name": "temperatureC",
+        "schema": "double",
+        "unit": "degreeCelsius"
+      }
     ]
   },
   {
     "@id": "dtmi:example:lab:HumiditySensor;1",
     "@type": "Interface",
     "@context": "dtmi:dtdl:context;2",
-    "extends": [ "dtmi:example:lab:Sensor;1" ],
+    "extends": ["dtmi:example:lab:Sensor;1"],
     "displayName": "Humidity Sensor",
     "contents": [
-      { "@type": "Telemetry", "name": "humidityPct", "schema": "double", "unit": "percent" }
+      {
+        "@type": "Telemetry",
+        "name": "humidityPct",
+        "schema": "double",
+        "unit": "percent"
+      }
     ]
   },
   {
     "@id": "dtmi:example:lab:CO2Sensor;1",
     "@type": "Interface",
     "@context": "dtmi:dtdl:context;2",
-    "extends": [ "dtmi:example:lab:Sensor;1" ],
+    "extends": ["dtmi:example:lab:Sensor;1"],
     "displayName": "CO2 Sensor",
     "contents": [
-      { "@type": "Telemetry", "name": "co2Pct", "schema": "double", "unit": "percent" }
+      {
+        "@type": "Telemetry",
+        "name": "co2Pct",
+        "schema": "double",
+        "unit": "percent"
+      }
+    ]
+  },
+  {
+    "@id": "dtmi:example:lab:VibrationSensor;1",
+    "@type": "Interface",
+    "@context": "dtmi:dtdl:context;2",
+    "extends": ["dtmi:example:lab:Sensor;1"],
+    "displayName": "Vibration Sensor",
+    "contents": [
+      {
+        "@type": "Telemetry",
+        "name": "vibrationRms",
+        "schema": "double",
+        "unit": "metrePerSecondSquared",
+        "description": "RMS vibration amplitude."
+      },
+      {
+        "@type": "Telemetry",
+        "name": "peakVibration",
+        "schema": "double",
+        "unit": "metrePerSecondSquared",
+        "description": "Peak vibration acceleration detected during sampling window."
+      }
     ]
   }
 ]
