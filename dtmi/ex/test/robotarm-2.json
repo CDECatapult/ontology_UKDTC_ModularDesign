@@ -1,5 +1,5 @@
 {
-  "@id": "dtmi:ex:robotics:RobotArm;2",
+  "@id": "dtmi:ex:robotics:RobotArm;1",
   "@type": ["Interface", "sosa:Actuator"],
   "@context": [
     "dtmi:dtdl:context;2",
