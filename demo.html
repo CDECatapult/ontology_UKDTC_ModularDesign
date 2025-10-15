@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategic Project Portfolio Breakdown</title>
+    <!-- Load Tailwind CSS for styling and responsiveness -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <style>
+        /* Define a custom font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7fafc; /* Light gray background */
+        }
+        /* Custom styles for canvas to be responsive */
+        .chart-container {
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-6xl mx-auto">
+        <!-- Header and Constraints -->
+        <header class="text-center mb-10">
+            <h1 class="text-3xl md:text-5xl font-extrabold text-gray-800 mb-2">Strategic Project Portfolio</h1>
+            <p class="text-xl text-indigo-600 font-semibold">Aerospace, Defense, and Maritime Focus</p>
+        </header>
+
+        <!-- Scope Clarification & Excluded Area -->
+        <div class="bg-yellow-50 border-l-4 border-yellow-500 text-yellow-800 p-4 mb-8 rounded-lg shadow-md" role="alert">
+            <p class="font-bold">Strategic Scope: Core vs. Constrained Projects</p>
+            <p class="text-sm">
+                **Core Focus (Lighter Colors):** Software, AI, and Systems Integration projects.
+                <br>**Constrained Projects (Darker Colors):** Manufacturing, Fabrication, and direct Ansys/SolidWorks overlap. The stacked chart below shows the proportional value of these constrained projects within each sector.
+            </p>
+        </div>
+
+        <!-- Charts Container (Responsive Grid) -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Chart 1: Overall Breakdown (Stacked Bar Chart - New) -->
+            <div class="lg:col-span-1 bg-white p-6 rounded-xl shadow-2xl transition duration-300 hover:shadow-indigo-300">
+                <h2 class="text-xl font-bold text-gray-700 mb-4 border-b pb-2">Sector Breakdown: Core vs. Constrained</h2>
+                <div class="chart-container h-80 flex items-center justify-center">
+                    <canvas id="overallDistributionChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Chart 2: Subject Breakdown (Bar Chart - Detail) -->
+            <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-2xl transition duration-300 hover:shadow-indigo-300">
+                <h2 class="text-xl font-bold text-gray-700 mb-4 border-b pb-2">Projects by Specific Subject Area (Core vs. Constrained)</h2>
+                <div class="chart-container h-96">
+                    <canvas id="subjectBreakdownChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="module">
+        // Fictional dataset for project quantity and subject areas.
+        const projectData = [
+            // CORE FOCUS: Aerospace (Software, systems, and dynamics - lighter indigo)
+            { area: 'Aerospace', subject: 'Flight Dynamics Modeling (Core)', count: 12, color: '#4F46E5', isConstrained: false },
+            { area: 'Aerospace', subject: 'SATCOM Optimization (Core)', count: 9, color: '#6366F1', isConstrained: false },
+            { area: 'Aerospace', subject: 'Air Traffic Management AI (Core)', count: 7, color: '#818CF8', isConstrained: false },
+            { area: 'Aerospace', subject: 'UAV Swarm Control Algorithms (Core)', count: 14, color: '#A5B4FC', isConstrained: false },
+            
+            // CONSTRAINED: Aerospace Manufacturing (darker indigo)
+            { area: 'Aerospace', subject: 'Advanced Additive Mfg. (Excluded)', count: 18, color: '#3730A3', isConstrained: true }, 
+            { area: 'Aerospace', subject: 'Toolpath Optimization (CAD Overlap - Excluded)', count: 20, color: '#4338CA', isConstrained: true },
+
+            // CORE FOCUS: Defense (Intelligence, cyber, and logistics - lighter green)
+            { area: 'Defense', subject: 'C4ISR Systems Integration (Core)', count: 15, color: '#16A34A', isConstrained: false },
+            { area: 'Defense', subject: 'Cyber Warfare Simulation (Core)', count: 11, color: '#10B981', isConstrained: false },
+            { area: 'Defense', subject: 'Predictive Logistics (Core)', count: 8, color: '#34D399', isConstrained: false },
+            
+            // CONSTRAINED: Defense Manufacturing (darker green)
+            { area: 'Defense', subject: 'Automated QC/Vision Systems (Excluded)', count: 15, color: '#047857', isConstrained: true },
+
+            // CORE FOCUS: Maritime (Autonomy, sensing, and security - lighter orange)
+            { area: 'Maritime', subject: 'Autonomous Navigation Software (Core)', count: 10, color: '#EA580C', isConstrained: false },
+            { area: 'Maritime', subject: 'Subsea Acoustic Modeling (Core)', count: 6, color: '#F97316', isConstrained: false },
+            { area: 'Maritime', subject: 'Port Security AI & Monitoring (Core)', count: 4, color: '#FB923C', isConstrained: false },
+
+            // CONSTRAINED: Maritime Manufacturing (darker orange)
+            { area: 'Maritime', subject: 'Hull Predictive Maintenance (Excluded)', count: 10, color: '#C2410C', isConstrained: true },
+        ];
+
+        // --- 1. Data Preparation for Stacked Bar Chart ---
+        const areas = ['Aerospace', 'Defense', 'Maritime'];
+        const coreTotals = {};
+        const constrainedTotals = {};
+
+        // Initialize totals to zero
+        areas.forEach(area => {
+            coreTotals[area] = 0;
+            constrainedTotals[area] = 0;
+        });
+
+        // Aggregate project counts
+        projectData.forEach(item => {
+            if (item.isConstrained) {
+                constrainedTotals[item.area] += item.count;
+            } else {
+                coreTotals[item.area] += item.count;
+            }
+        });
+        
+        // Extract values for Chart.js datasets (maintaining order)
+        const coreCounts = areas.map(area => coreTotals[area]);
+        const constrainedCounts = areas.map(area => constrainedTotals[area]);
+
+        // Define consistent colors for the two categories across all sectors
+        const coreColor = '#A5B4FC'; // Light Indigo
+        const constrainedColor = '#3730A3'; // Dark Indigo
+        const coreColorDefense = '#34D399'; // Light Green
+        const constrainedColorDefense = '#047857'; // Dark Green
+        const coreColorMaritime = '#FB923C'; // Light Orange
+        const constrainedColorMaritime = '#C2410C'; // Dark Orange
+
+
+        // 2. Prepare Data for Subject Breakdown (Bar Chart - uses existing logic)
+        const subjectLabels = projectData.map(item => item.subject);
+        const subjectCounts = projectData.map(item => item.count);
+        const subjectColors = projectData.map(item => item.color);
+
+
+        // --- Chart Initialization Functions ---
+
+        /**
+         * Initializes the Overall Project Distribution Stacked Bar Chart.
+         */
+        const initOverallChart = () => {
+            const ctx = document.getElementById('overallDistributionChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar', // Changed to bar chart
+                data: {
+                    labels: areas,
+                    datasets: [
+                        {
+                            label: 'Core Focus Projects',
+                            data: coreCounts,
+                            backgroundColor: [coreColor, coreColorDefense, coreColorMaritime],
+                            borderColor: '#ffffff',
+                            borderWidth: 1,
+                            borderRadius: 6,
+                            stack: 'Stack 0',
+                        },
+                        {
+                            label: 'Constrained/Excluded Projects (Manufacturing/CAD)',
+                            data: constrainedCounts,
+                            backgroundColor: [constrainedColor, constrainedColorDefense, constrainedColorMaritime],
+                            borderColor: '#ffffff',
+                            borderWidth: 1,
+                            borderRadius: 6,
+                            stack: 'Stack 0',
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            stacked: true, // Key property for stacking
+                            grid: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            stacked: true, // Key property for stacking
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Total Project Count'
+                            },
+                            ticks: {
+                                precision: 0
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    family: 'Inter',
+                                    size: 14
+                                }
+                            }
+                        },
+                        title: {
+                            display: false,
+                        }
+                    }
+                }
+            });
+        };
+
+        /**
+         * Initializes the Subject Breakdown Bar Chart (Detail View).
+         */
+        const initSubjectChart = () => {
+            const ctx = document.getElementById('subjectBreakdownChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: subjectLabels,
+                    datasets: [{
+                        label: 'Number of Projects',
+                        data: subjectCounts,
+                        backgroundColor: subjectColors.map(color => `${color}dd`), // Slightly transparent
+                        borderColor: subjectColors,
+                        borderWidth: 1,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y', // Horizontal bars for better readability of long subject names
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    label += context.parsed.x + ' Projects';
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Project Count',
+                                font: { weight: 'bold' }
+                            },
+                            ticks: {
+                                precision: 0
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        };
+
+        // Initialize all charts after the script runs
+        document.addEventListener('DOMContentLoaded', () => {
+            initOverallChart();
+            initSubjectChart();
+        });
+
+    </script>
+</body>
+</html>
