@@ -1,0 +1,60 @@
+@prefix dt: <http://example.com/digitaltwin/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# ===== CLASSES =====
+
+dt:Sensor a owl:Class ;
+    rdfs:label "A measurement device" .
+
+dt:TemperatureSensor a owl:Class ;
+    rdfs:subClassOf dt:Sensor .
+
+dt:HumiditySensor a owl:Class ;
+    rdfs:subClassOf dt:Sensor .
+
+dt:Reading a owl:Class ;
+    rdfs:label "A single data point" .
+
+dt:HealthSnapshot a owl:Class ;
+    rdfs:label "Health assessment at a point in time" .
+
+# ===== RELATIONSHIPS =====
+
+dt:hasReading a owl:ObjectProperty ;
+    rdfs:domain dt:Sensor ;
+    rdfs:range dt:Reading ;
+    rdfs:label "produces readings" .
+
+dt:hasHealth a owl:ObjectProperty ;
+    rdfs:domain dt:Sensor ;
+    rdfs:range dt:HealthSnapshot ;
+    rdfs:label "has health records" .
+
+# ===== PROPERTIES =====
+
+dt:sensor_id a owl:DatatypeProperty ;
+    rdfs:domain dt:Sensor ;
+    rdfs:range xsd:string ;
+    rdfs:label "unique ID" .
+
+dt:location a owl:DatatypeProperty ;
+    rdfs:domain dt:Sensor ;
+    rdfs:range xsd:string .
+
+dt:value a owl:DatatypeProperty ;
+    rdfs:domain dt:Reading ;
+    rdfs:range xsd:float .
+
+dt:timestamp a owl:DatatypeProperty ;
+    rdfs:domain dt:Reading ;
+    rdfs:range xsd:dateTime .
+
+dt:health_score a owl:DatatypeProperty ;
+    rdfs:domain dt:HealthSnapshot ;
+    rdfs:range xsd:integer .
+
+dt:status a owl:DatatypeProperty ;
+    rdfs:domain dt:HealthSnapshot ;
+    rdfs:range xsd:string .

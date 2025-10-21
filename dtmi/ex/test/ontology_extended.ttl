@@ -1,0 +1,151 @@
+@prefix dt: <http://example.com/digitaltwin/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# ===== ROOT ENTITY =====
+
+dt:Entity a owl:Class ;
+    rdfs:label "Anything that can be modeled" .
+
+# ===== SYSTEMS (Top Level) =====
+
+dt:System a owl:Class ;
+    rdfs:subClassOf dt:Entity ;
+    rdfs:label "A collection of components (vehicle, building, industrial plant)" .
+
+dt:Vehicle a owl:Class ;
+    rdfs:subClassOf dt:System ;
+    rdfs:label "Mobile system (UAV, ground rover, boat)" .
+
+dt:Building a owl:Class ;
+    rdfs:subClassOf dt:System ;
+    rdfs:label "Stationary system (building, facility)" .
+
+dt:IndustrialSystem a owl:Class ;
+    rdfs:subClassOf dt:System ;
+    rdfs:label "Manufacturing, SCADA, plant" .
+
+# ===== SUBSYSTEMS (Mid Level) =====
+
+dt:Subsystem a owl:Class ;
+    rdfs:subClassOf dt:Entity ;
+    rdfs:label "Part of a system (e.g., propulsion, HVAC)" .
+
+dt:PropulsionSubsystem a owl:Class ;
+    rdfs:subClassOf dt:Subsystem .
+
+dt:PowerManagementSubsystem a owl:Class ;
+    rdfs:subClassOf dt:Subsystem .
+
+dt:SensingSubsystem a owl:Class ;
+    rdfs:subClassOf dt:Subsystem .
+
+dt:EnvironmentControlSubsystem a owl:Class ;
+    rdfs:subClassOf dt:Subsystem .
+
+# ===== DEVICES (Low Level) =====
+
+dt:Device a owl:Class ;
+    rdfs:subClassOf dt:Entity ;
+    rdfs:label "Physical hardware component" .
+
+dt:Sensor a owl:Class ;
+    rdfs:subClassOf dt:Device ;
+    rdfs:label "Measurement device" .
+
+dt:Actuator a owl:Class ;
+    rdfs:subClassOf dt:Device ;
+    rdfs:label "Control device" .
+
+dt:Battery a owl:Class ;
+    rdfs:subClassOf dt:Device ;
+    rdfs:label "Power storage" .
+
+# ===== SENSOR SPECIALIZATIONS =====
+
+dt:TemperatureSensor a owl:Class ;
+    rdfs:subClassOf dt:Sensor .
+
+dt:HumiditySensor a owl:Class ;
+    rdfs:subClassOf dt:Sensor .
+
+dt:PressureSensor a owl:Class ;
+    rdfs:subClassOf dt:Sensor .
+
+dt:UltrasonicSensor a owl:Class ;
+    rdfs:subClassOf dt:Sensor .
+
+dt:Motor a owl:Class ;
+    rdfs:subClassOf dt:Actuator .
+
+# ===== DATA ENTITIES =====
+
+dt:Reading a owl:Class ;
+    rdfs:label "Single measurement" .
+
+dt:Event a owl:Class ;
+    rdfs:label "Something happened" .
+
+dt:HealthRecord a owl:Class ;
+    rdfs:label "Health assessment" .
+
+dt:Alert a owl:Class ;
+    rdfs:label "Warning/anomaly" .
+
+# ===== RELATIONSHIPS (Hierarchical) =====
+
+dt:hasSubsystem a owl:ObjectProperty ;
+    rdfs:domain dt:System ;
+    rdfs:range dt:Subsystem ;
+    rdfs:label "System contains subsystems" .
+
+dt:hasDevice a owl:ObjectProperty ;
+    rdfs:domain dt:Subsystem ;
+    rdfs:range dt:Device ;
+    rdfs:label "Subsystem contains devices" .
+
+dt:hasReading a owl:ObjectProperty ;
+    rdfs:domain dt:Device ;
+    rdfs:range dt:Reading ;
+    rdfs:label "Device produces readings" .
+
+dt:hasHealthRecord a owl:ObjectProperty ;
+    rdfs:domain dt:Entity ;
+    rdfs:range dt:HealthRecord ;
+    rdfs:label "Any entity has health" .
+
+dt:generatesAlert a owl:ObjectProperty ;
+    rdfs:domain dt:Entity ;
+    rdfs:range dt:Alert ;
+    rdfs:label "Entity can generate alerts" .
+
+# ===== PROPERTIES =====
+
+dt:entity_id a owl:DatatypeProperty ;
+    rdfs:domain dt:Entity ;
+    rdfs:range xsd:string .
+
+dt:entity_type a owl:DatatypeProperty ;
+    rdfs:domain dt:Entity ;
+    rdfs:range xsd:string .
+
+dt:location a owl:DatatypeProperty ;
+    rdfs:domain dt:Entity ;
+    rdfs:range xsd:string .
+
+dt:status a owl:DatatypeProperty ;
+    rdfs:domain dt:Entity ;
+    rdfs:range xsd:string .
+
+dt:value a owl:DatatypeProperty ;
+    rdfs:domain dt:Reading ;
+    rdfs:range xsd:float .
+
+dt:timestamp a owl:DatatypeProperty ;
+    rdfs:domain dt:Reading ;
+    rdfs:range xsd:dateTime .
+
+dt:health_score a owl:DatatypeProperty ;
+    rdfs:domain dt:HealthRecord ;
+    rdfs:range xsd:integer .
