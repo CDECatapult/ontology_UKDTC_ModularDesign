@@ -13,6 +13,13 @@
       "target": "dtmi:ex:peripherals:Motor;1",
       "minMultiplicity": 0,
       "maxMultiplicity": 2
+    },
+    {
+      "@type": "Relationship",
+      "name": "hasGripper",
+      "target": "dtmi:ex:robotics:Gripper;1",
+      "minMultiplicity": 0,
+      "maxMultiplicity": 2
     }
   ]
 }
