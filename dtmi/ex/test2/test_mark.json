@@ -1,0 +1,300 @@
+[
+  {
+    "@id": "dtmi:ex:test:test_mark;1",
+    "@type": "Interface",
+    "@context": "dtmi:dtdl:context;2",
+    "displayName": "Ned2 Robot",
+    "description": "Six-axis collaborative robot (Niryo Ned2): overview, state, composition, and behaviors.",
+    "extends": [
+      "dtmi:ukdtc:ned2:BaseAsset;1"
+    ],
+    "contents": [
+      {
+        "@type": "Property",
+        "name": "model",
+        "displayName": "Model",
+        "schema": "string",
+        "writable": false
+      },
+      {
+        "@type": "Property",
+        "name": "firmwareVersion",
+        "schema": "string",
+        "writable": false
+      },
+      {
+        "@type": "Property",
+        "name": "operatingMode",
+        "displayName": "Operating Mode",
+        "schema": {
+          "@type": "Enum",
+          "valueSchema": "string",
+          "enumValues": [
+            { "name": "Calibration", "value": "calibration" },
+            { "name": "Programming", "value": "programming" },
+            { "name": "FreeMotion", "value": "freemotion" }
+          ]
+        },
+        "writable": true
+      },
+      {
+        "@type": "Property",
+        "name": "calibrationRequired",
+        "schema": "boolean",
+        "displayName": "Calibration Required",
+        "writable": true
+      },
+      {
+        "@type": "Property",
+        "name": "repeatability_mm",
+        "displayName": "Repeatability (mm)",
+        "schema": "double",
+        "unit": "millimetre",
+        "writable": false
+      },
+      {
+        "@type": "Property",
+        "name": "payload_g",
+        "schema": "double",
+        "unit": "gram",
+        "writable": false
+      },
+      {
+        "@type": "Property",
+        "name": "reach_mm",
+        "schema": "double",
+        "unit": "millimetre",
+        "writable": false
+      },
+      {
+        "@type": "Property",
+        "name": "tcpMaxSpeed_mmps",
+        "displayName": "TCP Max Speed (mm/s)",
+        "schema": "double",
+        "unit": "millimetrePerSecond",
+        "writable": false
+      },
+      {
+        "@type": "Property",
+        "name": "temperatureC",
+        "schema": "double",
+        "unit": "degreeCelsius",
+        "writable": false
+      },
+      {
+        "@type": "Property",
+        "name": "ledStatus",
+        "displayName": "LED Ring Status",
+        "schema": "string",
+        "comment": "Encoded color/pattern label per Ned2 LED table."
+      },
+      {
+        "@type": "Property",
+        "name": "wifiHotspot",
+        "displayName": "Wi-Fi Hotspot State",
+        "schema": {
+          "@type": "Enum",
+          "valueSchema": "string",
+          "enumValues": [
+            { "name": "On", "value": "on" },
+            { "name": "Off", "value": "off" }
+          ]
+        },
+        "writable": true
+      },
+      {
+        "@type": "Property",
+        "name": "eStopEngaged",
+        "displayName": "Emergency Stop Engaged",
+        "schema": "boolean"
+      },
+      {
+        "@type": "Telemetry",
+        "name": "runtimeStatus",
+        "displayName": "Runtime Status",
+        "schema": {
+          "@type": "Object",
+          "fields": [
+            { "name": "uptimeSec", "schema": "long" },
+            { "name": "programState", "schema": "string" },
+            { "name": "errorCode", "schema": "string" }
+          ]
+        }
+      },
+      {
+        "@type": "Command",
+        "name": "calibrate",
+        "request": { "name": "force", "schema": "boolean" },
+        "response": { "name": "ok", "schema": "boolean" }
+      },
+      {
+        "@type": "Command",
+        "name": "home",
+        "response": { "name": "ok", "schema": "boolean" }
+      },
+      {
+        "@type": "Command",
+        "name": "setFreeMotion",
+        "request": { "name": "enabled", "schema": "boolean" },
+        "response": { "name": "ok", "schema": "boolean" }
+      },
+      {
+        "@type": "Relationship",
+        "name": "attachedTool",
+        "target": "dtmi:ukdtc:ned2:Tool;1",
+        "displayName": "Attached Tool"
+      },
+      { "@type": "Component", "name": "j1", "schema": "dtmi:ukdtc:ned2:Joint;1" },
+      { "@type": "Component", "name": "j2", "schema": "dtmi:ukdtc:ned2:Joint;1" },
+      { "@type": "Component", "name": "j3", "schema": "dtmi:ukdtc:ned2:Joint;1" },
+      { "@type": "Component", "name": "j4", "schema": "dtmi:ukdtc:ned2:Joint;1" },
+      { "@type": "Component", "name": "j5", "schema": "dtmi:ukdtc:ned2:Joint;1" },
+      { "@type": "Component", "name": "j6", "schema": "dtmi:ukdtc:ned2:Joint;1" },
+      { "@type": "Component", "name": "backPanel", "schema": "dtmi:ukdtc:ned2:BackPanelIO;1" },
+      { "@type": "Component", "name": "controlPanel", "schema": "dtmi:ukdtc:ned2:ControlPanel;1" },
+      { "@type": "Component", "name": "power", "schema": "dtmi:ukdtc:ned2:Power;1" },
+      { "@type": "Component", "name": "safetyBox", "schema": "dtmi:ukdtc:ned2:SafetyBox;1" },
+      { "@type": "Component", "name": "ledRing", "schema": "dtmi:ukdtc:ned2:LEDRing;1" }
+    ]
+  },
+
+  {
+    "@id": "dtmi:ukdtc:ned2:BaseAsset;1",
+    "@type": "Interface",
+    "@context": "dtmi:dtdl:context;2",
+    "displayName": "Base Asset",
+    "contents": [
+      { "@type": "Property", "name": "manufacturer", "schema": "string", "writable": false },
+      { "@type": "Property", "name": "serialNumber", "schema": "string", "writable": false },
+      { "@type": "Property", "name": "ceConformity", "schema": "boolean", "writable": false }
+    ]
+  },
+
+  {
+    "@id": "dtmi:ukdtc:ned2:Joint;1",
+    "@type": "Interface",
+    "@context": "dtmi:dtdl:context;2",
+    "displayName": "Robot Joint",
+    "contents": [
+      { "@type": "Property", "name": "index", "schema": "integer", "writable": false },
+      { "@type": "Property", "name": "name", "schema": "string", "writable": false },
+      { "@type": "Property", "name": "minPos_rad", "schema": "double", "unit": "radian", "writable": false },
+      { "@type": "Property", "name": "maxPos_rad", "schema": "double", "unit": "radian", "writable": false },
+      { "@type": "Property", "name": "speedLimit_radps", "schema": "double", "unit": "radianPerSecond", "writable": false },
+      { "@type": "Telemetry", "name": "position_rad", "schema": "double", "unit": "radian" },
+      { "@type": "Telemetry", "name": "velocity_radps", "schema": "double", "unit": "radianPerSecond" },
+      { "@type": "Telemetry", "name": "motorTemperatureC", "schema": "double", "unit": "degreeCelsius" },
+      { "@type": "Property", "name": "errorCode", "schema": "string" },
+      { "@type": "Property", "name": "collisionDetected", "schema": "boolean" }
+    ]
+  },
+
+  {
+    "@id": "dtmi:ukdtc:ned2:BackPanelIO;1",
+    "@type": "Interface",
+    "@context": "dtmi:dtdl:context;2",
+    "displayName": "Back Panel I/O",
+    "contents": [
+      { "@type": "Property", "name": "digitalInputs_NPN", "schema": { "@type": "Array", "elementSchema": "boolean" } },
+      { "@type": "Property", "name": "digitalOutputs_PNP", "schema": { "@type": "Array", "elementSchema": "boolean" }, "writable": true },
+      { "@type": "Property", "name": "analogInputs_V", "schema": { "@type": "Array", "elementSchema": "double" } },
+      { "@type": "Property", "name": "analogOutputs_V", "schema": { "@type": "Array", "elementSchema": "double" }, "writable": true },
+      { "@type": "Property", "name": "usb2Count", "schema": "integer", "writable": false },
+      { "@type": "Property", "name": "usb3Count", "schema": "integer", "writable": false },
+      { "@type": "Property", "name": "ethernetPresent", "schema": "boolean", "writable": false },
+      { "@type": "Command", "name": "setDO", "request": { "@type": "Object", "fields": [ { "name": "index", "schema": "integer" }, { "name": "state", "schema": "boolean" } ] }, "response": { "name": "ok", "schema": "boolean" } },
+      { "@type": "Command", "name": "setAO", "request": { "@type": "Object", "fields": [ { "name": "index", "schema": "integer" }, { "name": "volts", "schema": "double" } ] }, "response": { "name": "ok", "schema": "boolean" } }
+    ]
+  },
+
+  {
+    "@id": "dtmi:ukdtc:ned2:ControlPanel;1",
+    "@type": "Interface",
+    "@context": "dtmi:dtdl:context;2",
+    "displayName": "Control Panel",
+    "contents": [
+      { "@type": "Telemetry", "name": "buttonEvent", "schema": { "@type": "Object", "fields": [ { "name": "button", "schema": "string" }, { "name": "type", "schema": "string" } ] } },
+      { "@type": "Property", "name": "customButtonMode", "schema": "string", "writable": true }
+    ]
+  },
+
+  {
+    "@id": "dtmi:ukdtc:ned2:Power;1",
+    "@type": "Interface",
+    "@context": "dtmi:dtdl:context;2",
+    "displayName": "Power",
+    "contents": [
+      { "@type": "Property", "name": "acInputRange", "schema": "string", "writable": false, "comment": "AC 100–240 V, 50/60 Hz, 2.5 A" },
+      { "@type": "Property", "name": "dcOutputs", "schema": { "@type": "Object", "fields": [ { "name": "rail12V_A", "schema": "double" }, { "name": "rail5V_A", "schema": "double" } ] }, "writable": false },
+      { "@type": "Property", "name": "powerState", "schema": { "@type": "Enum", "valueSchema": "string", "enumValues": [ { "name": "Off", "value": "off" }, { "name": "Booting", "value": "booting" }, { "name": "Ready", "value": "ready" } ] }, "writable": true }
+    ]
+  },
+
+  {
+    "@id": "dtmi:ukdtc:ned2:SafetyBox;1",
+    "@type": "Interface",
+    "@context": "dtmi:dtdl:context;2",
+    "displayName": "Safety Box",
+    "contents": [
+      { "@type": "Property", "name": "eStopEngaged", "schema": "boolean" },
+      { "@type": "Telemetry", "name": "safetyEvent", "schema": { "@type": "Object", "fields": [ { "name": "type", "schema": "string" }, { "name": "timestamp", "schema": "dateTime" } ] } }
+    ]
+  },
+
+  {
+    "@id": "dtmi:ukdtc:ned2:LEDRing;1",
+    "@type": "Interface",
+    "@context": "dtmi:dtdl:context;2",
+    "displayName": "LED Ring",
+    "contents": [
+      { "@type": "Property", "name": "pattern", "schema": { "@type": "Enum", "valueSchema": "string", "enumValues": [ { "name": "Solid", "value": "solid" }, { "name": "Flashing", "value": "flashing" }, { "name": "Alternate", "value": "alternate" }, { "name": "Chase", "value": "chase" }, { "name": "Rainbow", "value": "rainbow" }, { "name": "Breath", "value": "breath" }, { "name": "Snake", "value": "snake" } ] }, "writable": true },
+      { "@type": "Property", "name": "color", "schema": "string", "comment": "e.g., white, blue, green, orange, red, purple", "writable": true }
+    ]
+  },
+
+  {
+    "@id": "dtmi:ukdtc:ned2:Tool;1",
+    "@type": "Interface",
+    "@context": "dtmi:dtdl:context;2",
+    "displayName": "Generic Tool",
+    "contents": [
+      { "@type": "Property", "name": "toolType", "schema": "string", "writable": false },
+      { "@type": "Property", "name": "mass_g", "schema": "double", "unit": "gram", "writable": false }
+    ]
+  },
+
+  {
+    "@id": "dtmi:ukdtc:ned2:Gripper;1",
+    "@type": "Interface",
+    "@context": "dtmi:dtdl:context;2",
+    "displayName": "Gripper",
+    "extends": [ "dtmi:ukdtc:ned2:Tool;1" ],
+    "contents": [
+      { "@type": "Property", "name": "jawOpening_mm", "schema": "double", "unit": "millimetre", "writable": true },
+      { "@type": "Command", "name": "open", "response": { "name": "ok", "schema": "boolean" } },
+      { "@type": "Command", "name": "close", "response": { "name": "ok", "schema": "boolean" } }
+    ]
+  },
+
+  {
+    "@id": "dtmi:ukdtc:ned2:VacuumPump;1",
+    "@type": "Interface",
+    "@context": "dtmi:dtdl:context;2",
+    "displayName": "Vacuum Pump",
+    "extends": [ "dtmi:ukdtc:ned2:Tool;1" ],
+    "contents": [
+      { "@type": "Property", "name": "vacuumOn", "schema": "boolean", "writable": true }
+    ]
+  },
+
+  {
+    "@id": "dtmi:ukdtc:ned2:Electromagnet;1",
+    "@type": "Interface",
+    "@context": "dtmi:dtdl:context;2",
+    "displayName": "Electromagnet",
+    "extends": [ "dtmi:ukdtc:ned2:Tool;1" ],
+    "contents": [
+      { "@type": "Property", "name": "enabled", "schema": "boolean", "writable": true }
+    ]
+  }
+]
