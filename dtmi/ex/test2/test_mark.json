@@ -1,6 +1,6 @@
 [
   {
-    "@id": "dtmi:ex:test:test_mark;1",
+    "@id": "dtmi:ex:test2:test_mark;1",
     "@type": "Interface",
     "@context": "dtmi:dtdl:context;2",
     "displayName": "Ned2 Robot",
