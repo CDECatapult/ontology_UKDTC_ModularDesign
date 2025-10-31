@@ -1,0 +1,20 @@
+{
+  "@id": "dtmi:ex:domain:ProjectCell;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "displayName": "Project Cell_1",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "soemthign2",
+      "schema": "string"
+    },
+    {
+      "@type": "Relationship",
+      "name": "hasthis",
+      "target": "dtmi:ex:domain:Test;1",
+      "minMultiplicity": 0,
+      "maxMultiplicity": 6
+    }
+  ]
+}
