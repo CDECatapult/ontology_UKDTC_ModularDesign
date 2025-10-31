@@ -1,0 +1,23 @@
+{
+  "@id": "dtmi:ex:Proposal_1:Workspace;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "displayName": "Workspace",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "X_Dimension",
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "Y_Dimension",
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "Z_Dimension",
+      "schema": "double"
+    }
+  ]
+}
