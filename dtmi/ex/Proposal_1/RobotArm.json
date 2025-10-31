@@ -90,14 +90,14 @@
     {
       "@type": "Relationship",
       "name": "hasmultiple",
-      "target": "dtmi:ex:domain:Joint;",
+      "target": "dtmi:ex:Proposal_1:Joint;",
       "minMultiplicity": 0,
       "maxMultiplicity": 6
     },
     {
       "@type": "Relationship",
       "name": "sitson",
-      "target": "dtmi:ex:domain:Base;1",
+      "target": "dtmi:ex:Proposal_1:Base;1",
       "minMultiplicity": 0,
       "maxMultiplicity": 1
     }

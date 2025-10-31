@@ -17,14 +17,14 @@
     {
       "@type": "Relationship",
       "name": "Runsby",
-      "target": "dtmi:ex:domain:Motor;1",
+      "target": "dtmi:ex:Proposal_1:Motor;1",
       "minMultiplicity": 0,
       "maxMultiplicity": 1
     },
     {
       "@type": "Relationship",
       "name": "hasanasset",
-      "target": "dtmi:ex:domain:EndEffector;1",
+      "target": "dtmi:ex:Proposal_1:EndEffector;1",
       "minMultiplicity": 0,
       "maxMultiplicity": 1
     }
