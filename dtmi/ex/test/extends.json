@@ -1,0 +1,10 @@
+{
+  "@id": "dtmi:ex:domain:RobotArm;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "extends": [ "dtmi:ex:domain:Device;1" ],
+  "displayName": "Robot Arm",
+  "contents": [
+    { "@type": "Property", "name": "axisCount", "schema": "integer" }
+  ]
+}

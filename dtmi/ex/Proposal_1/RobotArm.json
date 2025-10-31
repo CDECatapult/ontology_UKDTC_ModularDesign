@@ -110,7 +110,7 @@
     },
     {
       "@type": "Relationship",
-      "name": "sitson",
+      "name": "belongsto",
       "target": "dtmi:ex:Proposal_1:Workspace;1",
       "minMultiplicity": 0,
       "maxMultiplicity": 1

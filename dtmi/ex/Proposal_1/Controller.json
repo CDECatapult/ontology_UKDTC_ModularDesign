@@ -1,0 +1,38 @@
+{
+  "@id": "dtmi:ex:Proposal_1:Controller;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "displayName": "Controller",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "Temperature",
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "Voltage",
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "State",
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "Calibration",
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "Connection",
+      "schema": "boolean"
+    },
+    {
+      "@type": "Property",
+      "name": "DutyCylce",
+      "schema": "double"
+    }
+  ]
+}
