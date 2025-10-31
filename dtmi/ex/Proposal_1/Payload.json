@@ -1,8 +1,8 @@
 {
-  "@id": "dtmi:ex:Proposal_1:Workspace;1",
+  "@id": "dtmi:ex:Proposal_1:Payload;1",
   "@type": "Interface",
   "@context": "dtmi:dtdl:context;2",
-  "displayName": "Workspace",
+  "displayName": "Payload",
   "contents": [
     {
       "@type": "Property",
@@ -20,11 +20,26 @@
       "schema": "double"
     },
     {
+      "@type": "Property",
+      "name": "Mass",
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "Material",
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "Make",
+      "schema": "string"
+    },
+    {
       "@type": "Relationship",
-      "name": "Contains",
+      "name": "PlacedIn",
       "target": "dtmi:ex:Proposal_1:Locations;1",
       "minMultiplicity": 0,
-      "maxMultiplicity": 100
+      "maxMultiplicity": 10
     }
   ]
 }

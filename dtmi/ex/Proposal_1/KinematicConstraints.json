@@ -1,0 +1,30 @@
+{
+  "@id": "dtmi:ex:Proposal_1:KinematicConstraints;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "displayName": "KinematicConstraints",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "Constraint",
+      "schema": {
+        "@type": "Enum",
+        "valueSchema": "string",
+        "enumValues": [
+          {
+            "name": "Constraint1",
+            "enumValue": "Constraint1"
+          },
+          {
+            "name": "Constraint2",
+            "enumValue": "Constraint2"
+          },
+          {
+            "name": "ConstraintN",
+            "enumValue": "ConstraintN"
+          }
+        ]
+      }
+    }
+  ]
+}

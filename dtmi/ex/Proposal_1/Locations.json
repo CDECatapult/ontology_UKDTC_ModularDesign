@@ -1,8 +1,8 @@
 {
-  "@id": "dtmi:ex:Proposal_1:Workspace;1",
+  "@id": "dtmi:ex:Proposal_1:Locations;1",
   "@type": "Interface",
   "@context": "dtmi:dtdl:context;2",
-  "displayName": "Workspace",
+  "displayName": "Locations",
   "contents": [
     {
       "@type": "Property",
@@ -21,8 +21,8 @@
     },
     {
       "@type": "Relationship",
-      "name": "Contains",
-      "target": "dtmi:ex:Proposal_1:Locations;1",
+      "name": "IsConstrainedBy",
+      "target": "dtmi:ex:Proposal_1:KinematicConstraints;1",
       "minMultiplicity": 0,
       "maxMultiplicity": 100
     }

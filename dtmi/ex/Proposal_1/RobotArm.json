@@ -110,10 +110,17 @@
     },
     {
       "@type": "Relationship",
-      "name": "belongsto",
+      "name": "operatesIn",
       "target": "dtmi:ex:Proposal_1:Workspace;1",
       "minMultiplicity": 0,
       "maxMultiplicity": 1
-    } 
+    } ,
+    {
+      "@type": "Relationship",
+      "name": "Constrainedby",
+      "target": "dtmi:ex:Proposal_1:KinematicConstraints;1",
+      "minMultiplicity": 0,
+      "maxMultiplicity": 100
+    }
   ]
 }
