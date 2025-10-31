@@ -1,0 +1,37 @@
+{
+  "@id": "dtmi:ex:test:RobotArm;1",
+  "@type": ["Interface", "sosa:Actuator"],
+  "@context": [
+    "dtmi:dtdl:context;2",
+    { "sosa": "http://www.w3.org/ns/sosa/" }
+  ],
+  "displayName": "Robot Arm",
+  "description": "A robotic manipulator that can pick and place payloads",
+  "contents": [
+    {
+      "@type": "Relationship",
+      "name": "hasJoint",
+      "target": "dtmi:ex:robotics:Joint;1",
+      "minMultiplicity": 0,
+      "maxMultiplicity": 7
+    },
+    {
+      "@type": "Relationship",
+      "name": "hasGripper",
+      "target": "dtmi:ex:robotics:Gripper;1",
+      "minMultiplicity": 0,
+      "maxMultiplicity": 2
+    },
+    {
+      "@type": "Relationship",
+      "name": "PicknPlaceontoDrone",
+      "target": "dtmi:ex:domain:StorageContainer;1",
+      "minMultiplicity": 0,
+      "maxMultiplicity": 2
+    },
+    {
+      "@type": "Command",
+      "name": "emergencyStop"
+    }
+  ]
+}
