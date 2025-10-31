@@ -1,0 +1,32 @@
+{
+  "@id": "dtmi:ex:domain:Joint;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "displayName": "Joint",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "JointAngle",
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "Name",
+      "schema": "string"
+    },
+    {
+      "@type": "Relationship",
+      "name": "HasA",
+      "target": "dtmi:ex:domain:Motor;1",
+      "minMultiplicity": 0,
+      "maxMultiplicity": 1
+    },
+    {
+      "@type": "Relationship",
+      "name": "HasA",
+      "target": "dtmi:ex:domain:EndEffector;1",
+      "minMultiplicity": 0,
+      "maxMultiplicity": 1
+    }
+  ]
+}

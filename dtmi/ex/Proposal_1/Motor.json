@@ -1,0 +1,23 @@
+{
+  "@id": "dtmi:ex:domain:Motor;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "displayName": "Motor",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "Voltage",
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "Temperature",
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "Make",
+      "schema": "string"
+    }
+  ]
+}

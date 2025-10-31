@@ -1,0 +1,105 @@
+{
+  "@id": "dtmi:ex:domain:RobotArm;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "displayName": "RobotArm",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "OperationalStates",
+      "schema": {
+        "@type": "Enum",
+        "valueSchema": "string",
+        "enumValues": [
+          {
+            "name": "Idle",
+            "enumValue": "Idle"
+          },
+          {
+            "name": "Warmup",
+            "enumValue": "Warmup"
+          },
+          {
+            "name": "Start",
+            "enumValue": "Start"
+          },
+          {
+            "name": "Stop",
+            "enumValue": "Stop"
+          },
+          {
+            "name": "Faulted",
+            "enumValue": "Faulted"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "Property",
+      "name": "Manufacturer",
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "Model",
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "Version",
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "RemainingUsefulLife",
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "X Dimension",
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "Y Dimension",
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "Z Dimension",
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "CalibratedState",
+      "schema": {
+        "@type": "Enum",
+        "valueSchema": "string",
+        "enumValues": [
+          {
+            "name": "Yes",
+            "enumValue": "Yes"
+          },
+          {
+            "name": "No",
+            "enumValue": "No"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "Relationship",
+      "name": "HasA",
+      "target": "dtmi:ex:domain:Joint;",
+      "minMultiplicity": 0,
+      "maxMultiplicity": 6
+    },
+    {
+      "@type": "Relationship",
+      "name": "HasA",
+      "target": "dtmi:ex:domain:Base;1",
+      "minMultiplicity": 0,
+      "maxMultiplicity": 1
+    }
+  ]
+}

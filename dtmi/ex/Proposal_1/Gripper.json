@@ -1,0 +1,26 @@
+{
+  "@id": "dtmi:ex:domain:Gripper;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "displayName": "Gripper",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "State",
+      "schema": {
+        "@type": "Enum",
+        "valueSchema": "string",
+        "enumValues": [
+          {
+            "name": "ON",
+            "enumValue": "ON"
+          },
+          {
+            "name": "OFF",
+            "enumValue": "OFF"
+          }
+        ]
+      }
+    }
+  ]
+}
