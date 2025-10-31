@@ -1,5 +1,5 @@
 {
-  "@id": "dtmi:ex:domain:Joint;1",
+  "@id": "dtmi:ex:Proposal_1:Joint;1",
   "@type": "Interface",
   "@context": "dtmi:dtdl:context;2",
   "displayName": "Joint",
@@ -16,7 +16,7 @@
     },
     {
       "@type": "Relationship",
-      "name": "HasA",
+      "name": "Runsby",
       "target": "dtmi:ex:domain:Motor;1",
       "minMultiplicity": 0,
       "maxMultiplicity": 1

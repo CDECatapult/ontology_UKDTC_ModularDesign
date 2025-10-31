@@ -1,5 +1,5 @@
 {
-  "@id": "dtmi:ex:domain:Motor;1",
+  "@id": "dtmi:ex:Proposal_1:Motor;1",
   "@type": "Interface",
   "@context": "dtmi:dtdl:context;2",
   "displayName": "Motor",

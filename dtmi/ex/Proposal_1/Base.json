@@ -1,5 +1,5 @@
 {
-  "@id": "dtmi:ex:domain:Base;1",
+  "@id": "dtmi:ex:Proposal_1:Base;1",
   "@type": "Interface",
   "@context": "dtmi:dtdl:context;2",
   "displayName": "Base",

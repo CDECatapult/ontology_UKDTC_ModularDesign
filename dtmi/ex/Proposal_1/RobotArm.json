@@ -96,7 +96,7 @@
     },
     {
       "@type": "Relationship",
-      "name": "HasA",
+      "name": "sitson",
       "target": "dtmi:ex:domain:Base;1",
       "minMultiplicity": 0,
       "maxMultiplicity": 1
