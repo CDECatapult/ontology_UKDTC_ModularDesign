@@ -23,7 +23,7 @@
     },
     {
       "@type": "Relationship",
-      "name": "HasA",
+      "name": "hasanasset",
       "target": "dtmi:ex:domain:EndEffector;1",
       "minMultiplicity": 0,
       "maxMultiplicity": 1

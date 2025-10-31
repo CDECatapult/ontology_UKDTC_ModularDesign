@@ -89,7 +89,7 @@
     },
     {
       "@type": "Relationship",
-      "name": "HasA",
+      "name": "hasmultiple",
       "target": "dtmi:ex:domain:Joint;",
       "minMultiplicity": 0,
       "maxMultiplicity": 6
