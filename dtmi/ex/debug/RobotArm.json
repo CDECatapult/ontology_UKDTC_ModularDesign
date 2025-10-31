@@ -56,17 +56,17 @@
     },
     {
       "@type": "Property",
-      "name": "X Dimension",
+      "name": "X_Dimension",
       "schema": "double"
     },
     {
       "@type": "Property",
-      "name": "Y Dimension",
+      "name": "Y_Dimension",
       "schema": "double"
     },
     {
       "@type": "Property",
-      "name": "Z Dimension",
+      "name": "Z_Dimension",
       "schema": "double"
     },
     {
