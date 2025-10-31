@@ -1,0 +1,48 @@
+{
+  "@id": "dtmi:ex:domain:Test;1",
+  "@type": "Interface",
+  "@context": "dtmi:dtdl:context;2",
+  "displayName": "Test_Rohit",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "Temperature",
+      "schema": "double"
+    },
+    {
+      "@type": "Property",
+      "name": "State",
+      "schema": {
+        "@type": "Enum",
+        "valueSchema": "string",
+        "enumValues": [
+          {
+            "name": "ON",
+            "enumValue": "ON"
+          },
+          {
+            "name": "OFF",
+            "enumValue": "OFF"
+          },
+          {
+            "name": "IDLE",
+            "enumValue": "IDLE"
+          },
+          {
+            "name": "WARMUP",
+            "enumValue": "WARMUP"
+          },
+          {
+            "name": "FAULTED",
+            "enumValue": "FAULTED"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "Property",
+      "name": "something",
+      "schema": "string"
+    }
+  ]
+}
