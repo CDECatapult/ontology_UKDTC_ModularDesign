@@ -103,7 +103,7 @@
     } ,
     {
       "@type": "Relationship",
-      "name": "hasmultiple",
+      "name": "ControlledBy",
       "target": "dtmi:ex:Proposal_1:Controller;1",
       "minMultiplicity": 0,
       "maxMultiplicity": 6
