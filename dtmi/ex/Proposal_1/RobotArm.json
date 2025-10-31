@@ -1,5 +1,5 @@
 {
-  "@id": "dtmi:ex:domain:RobotArm;1",
+  "@id": "dtmi:ex:Proposal_1:RobotArm;1",
   "@type": "Interface",
   "@context": "dtmi:dtdl:context;2",
   "displayName": "RobotArm",
