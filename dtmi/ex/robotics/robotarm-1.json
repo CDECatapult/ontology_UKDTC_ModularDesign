@@ -2,6 +2,7 @@
   "@id": "dtmi:ex:robotics:RobotArm;1",
   "@type": "Interface",
   "@context": "dtmi:dtdl:context;2",
+  "extends": [ "dtmi:ex:Proposal_1:RobotArm;1" ],
   "displayName": "Robot Arm",
   "contents": [
     {
